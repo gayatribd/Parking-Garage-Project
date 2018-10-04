@@ -1,0 +1,5 @@
+#!/bin/sh
+IPADDR=$(/sbin/ifconfig eth0|grep "inet addr:"|cut -d : -f 2|cut -d B -f 1)
+NSHOST=$(cat nameserver-host)
+#NSHOST=172.19.132.112
+java -jar ReplicationManager.jar -ORBInitialHost $NSHOST -ORBInitialPort 7777 -ORBServerHost $IPADDR -ORBServerPort 7780 $@

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Kills all server instances on this computer
+for i in `ps wwx|grep java|grep Client.jar|cut -c 1-6`; do
+  kill -9 $i
+done

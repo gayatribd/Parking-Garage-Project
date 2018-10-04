@@ -1,0 +1,4 @@
+#!/bin/sh
+NSHOST=$(cat ../sourcecode/nameserver-host)
+#NSHOST=172.19.132.112
+java -jar Client.jar -ORBInitialHost $NSHOST -ORBInitialPort 9867 $@

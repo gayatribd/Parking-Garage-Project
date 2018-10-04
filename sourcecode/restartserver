@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Restarts the server using the given parameters
+if [[ ! $1 -eq 83439 ]]; then
+  echo "This script must only be called from the replication manager"
+  exit 1
+fi
+
+# Get the hostname
+shift
+SERVER_HOSTNAME=$1
+shift
+
+# If we are supposed to kill the server, then do so now
+PROJECT_ROOT=$2
+if [[ $1 -eq 1 ]]; then
+  ssh -x $SERVER_HOSTNAME "$PROJECT_ROOT/server/killserver" || exit
+fi
+shift 2
+
+# Start the server
+ssh -n -x $SERVER_HOSTNAME "cd '$PROJECT_ROOT/server'; ./server $@" &
+echo PID=$!

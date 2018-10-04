@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Kills all replication manager instances on this computer
+for i in `ps wwx|grep java|grep ReplicationManager.jar|cut -c 1-6`; do
+  kill -9 $i
+done

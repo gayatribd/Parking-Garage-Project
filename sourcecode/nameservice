@@ -1,0 +1,4 @@
+#!/bin/sh
+IPADDR=$(/sbin/ifconfig eth0|grep "inet addr:"|cut -d : -f 2|cut -d B -f 1)
+orbd -port 7778 -ORBInitialPort 9867 -ORBInitialHost $IPADDR -ORBServerHost $IPADDR &
+echo $IPADDR > nameserver-host
